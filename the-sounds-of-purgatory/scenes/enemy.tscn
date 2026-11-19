@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://l5oru0ildlbw"]
+
+[ext_resource type="Texture2D" uid="uid://dhonrbs784iye" path="res://icon.svg" id="1_7p1mj"]
+[ext_resource type="Script" uid="uid://bb4i4p2s5git3" path="res://scripts/enemy.gd" id="1_md0e3"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jursw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k10nl"]
+radius = 41.01219
+
+[node name="Enemy" type="CharacterBody2D" unique_id=781956685]
+collision_layer = 2
+collision_mask = 3
+script = ExtResource("1_md0e3")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1482777339]
+modulate = Color(1, 0, 0, 1)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("1_7p1mj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=734930374]
+shape = SubResource("CircleShape2D_jursw")
+
+[node name="Hitbox" type="Area2D" parent="." unique_id=2111863641]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" unique_id=1916794770]
+shape = SubResource("CircleShape2D_k10nl")
