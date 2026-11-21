@@ -2,6 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://dhonrbs784iye" path="res://icon.svg" id="1_7p1mj"]
 [ext_resource type="Script" uid="uid://bb4i4p2s5git3" path="res://scripts/enemy.gd" id="1_md0e3"]
+[ext_resource type="Shader" uid="uid://ydl7m8hv2fv6" path="res://scenes/enemy.gdshader" id="2_4ra3w"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_softn"]
+resource_local_to_scene = true
+shader = ExtResource("2_4ra3w")
+shader_parameter/flash_amount = 0.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jursw"]
 
@@ -15,6 +21,7 @@ script = ExtResource("1_md0e3")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1482777339]
 modulate = Color(1, 0, 0, 1)
+material = SubResource("ShaderMaterial_softn")
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("1_7p1mj")
 

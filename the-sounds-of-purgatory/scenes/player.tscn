@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://bae3ifpk45k2v"]
 
-[ext_resource type="Texture2D" uid="uid://dhonrbs784iye" path="res://icon.svg" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://c4k8o5x58bu1d" path="res://scripts/player.gd" id="1_dqkch"]
 [ext_resource type="Script" uid="uid://blye4j317gjut" path="res://scripts/camera_control.gd" id="2_g2els"]
+[ext_resource type="Texture2D" uid="uid://74ucxjmpf6by" path="res://assets/sprites/main_character_sprite.png" id="3_dqkch"]
 [ext_resource type="PackedScene" uid="uid://1lk35if1nqwg" path="res://scenes/projectile.tscn" id="3_qhqgy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wfyh"]
@@ -14,14 +14,19 @@ script = ExtResource("1_dqkch")
 projectile_scene = ExtResource("3_qhqgy")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=899049776]
-texture = ExtResource("1_3vyb7")
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("3_dqkch")
+
+[node name="Aim" type="Node2D" parent="Sprite2D" unique_id=115491557]
+
+[node name="Muzzle" type="Marker2D" parent="Sprite2D/Aim" unique_id=1941177808]
+position = Vector2(160, 0)
+scale = Vector2(4, 4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1499298559]
 position = Vector2(0, -0.5)
+scale = Vector2(0.6, 0.8)
 shape = SubResource("RectangleShape2D_0wfyh")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=870975501]
 script = ExtResource("2_g2els")
-
-[node name="Muzzle" type="Marker2D" parent="." unique_id=1941177808]
-position = Vector2(40, 0)

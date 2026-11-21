@@ -5,11 +5,14 @@ extends CharacterBody2D
 @export var max_hp: float = 50.0
 @export var collision_damage: float = 10.0
 @export var damage_interval: float = 0.5
+@export var flash_duration: float = 0.2
 
 var hp: float
 var player: Node2D = null
 var damage_cd: float = 0.0
+var flash_tween: Tween = null
 
+@onready var sprite: Sprite2D = $Sprite2D
 @onready var hitbox: Area2D = get_node_or_null("Hitbox")
 
 func _ready() -> void:
@@ -35,5 +38,14 @@ func _physics_process(delta: float) -> void:
 
 func take_damage(damage: float) -> void:
 	hp -= damage
+	flash_hit()
 	if hp <= 0.0:
 		queue_free()
+
+func flash_hit() -> void:
+	if sprite and sprite.material is ShaderMaterial:
+		if flash_tween and flash_tween.is_valid():
+			flash_tween.kill()
+		sprite.material.set_shader_parameter("flash_amount", 1.0)
+		flash_tween = create_tween()
+		flash_tween.tween_property(sprite.material, "shader_parameter/flash_amount", 0.0, flash_duration)

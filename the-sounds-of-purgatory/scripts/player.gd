@@ -50,7 +50,9 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 	
 	# Cursor
-	look_at(get_global_mouse_position())
+	var mouse_pos := get_global_mouse_position()
+	$Sprite2D/Aim.look_at(mouse_pos)
+	$Sprite2D.flip_h = mouse_pos.x < global_position.x
 	
 	# Attack
 	if Input.is_action_pressed("attack") and attack_cd <= 0.0:
@@ -63,7 +65,7 @@ func shoot() -> void:
 
 	attack_cd = attack_rate
 	var bullet := projectile_scene.instantiate()
-	bullet.global_transform = $Muzzle.global_transform
+	bullet.global_transform = $Sprite2D/Aim/Muzzle.global_transform
 	get_tree().current_scene.add_child(bullet)
 
 
